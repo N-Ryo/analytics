@@ -10,6 +10,20 @@
   </head>
 
   <body>
+    <header>
+        <nav>
+            <% if site_signed_in? %>
+            <strong><%= link_to current_site.username, reports_show_path %></strong>
+            <%= link_to 'セッティング', edit_site_registration_path %>
+            <%= link_to 'ログアウト', destroy_site_session_path, method: :delete %>
+        <% else %>
+            <%= link_to 'サインアップ', new_site_registration_path %>
+            <%= link_to 'ログイン', new_site_session_path %>
+            <% end %>
+        </nav>
+    </header>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>
