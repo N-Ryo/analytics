@@ -12,18 +12,54 @@
   <body>
     <header>
         <nav>
-            <% if site_signed_in? %>
+          <% if site_signed_in? %>
             <strong><%= link_to current_site.username, reports_show_path %></strong>
             <%= link_to 'セッティング', edit_site_registration_path %>
             <%= link_to 'ログアウト', destroy_site_session_path, method: :delete %>
-        <% else %>
+          <% else %>
             <%= link_to 'サインアップ', new_site_registration_path %>
             <%= link_to 'ログイン', new_site_session_path %>
-            <% end %>
+          <% end %>
         </nav>
     </header>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
+    <script src="http://localhost:3000/app/assets/javascript/api.js"></script>
+    <script>
+    $(function(){
+        $('#post').on('click', function(){
+            $.ajax({
+                method: 'post',
+                url: 'login',
+                dataType: "json",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    user:
+                    {
+                        username: "Yehuda",
+                        password: "test"
+                    }
+                }),
+                timeout: 10000,
+                }).done(function(data) {
+                    alert("success:" + data);
+                    alert("success:" + data[0]);
+
+                    // 取れてた
+                    console.log('ログ', data);
+                    console.log('ログ', data.error);
+                    console.log('ログ', data.error.code);
+                    console.log('ログ', data.error.message);
+                    // レスポンスデータを画面に表示してみた
+                    $("#code").text(data.error.code);
+                    $("#message").text(data.error.message);
+
+                }).fail(function(data) {
+                    alert("error");
+            })
+        })
+    })
+    </script>
   </body>
 </html>
