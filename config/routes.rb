@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get 'reports/show'
   devise_for :sites
   namespace :api, { format: 'json' } do
-    resources :products
+    namespace :v1 do
+      resources :pvs
+    end
   end
 end
