@@ -14,18 +14,38 @@ module Api
       # # GET /pvs/1.json
       # def show
       # end
-
+      # def login
+      #   @pv = Pv.new(pv_params)
+      #   @site = Site.find_by(url: URI.parse(@pv[:url]))
+      #   @pv[:site_id] = @site.id
+      #   if Pv.find_by(url: @pv[:url])
+      #     render json: {
+      #       "data":  {
+      #         "message": "ログインできました。" ,
+      #         "code": "0000",
+      #       }
+      #     } , status:200
+      #   else
+      #     render json: {
+      #       "error":  {
+      #         "message": "ログインできません。" ,
+      #         "code": "9999",
+      #       }
+      #     } , status:200
+      #   end
+      #
+      # end
       # POST /pvs
       # POST /pvs.json
-      def create
-        @pv = Pv.new(pv_params)
-        @pv.site_id.to_i
-        if @pv.save
-          render :show, status: :created, location: @pv
-        else
-          render json: @pv.errors, status: :unprocessable_entity
-        end
-      end
+      # def create
+      #   @pv = Pv.new(pv_params)
+      #   @pv.site_id.to_i
+      #   if @pv.save
+      #     render :show, status: :created, location: @pv
+      #   else
+      #     render json: @pv.errors, status: :unprocessable_entity
+      #   end
+      # end
       #
       # # PATCH/PUT /pvs/1
       # # PATCH/PUT /pvs/1.json

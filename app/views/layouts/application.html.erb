@@ -25,40 +25,33 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
-    <script src="http://localhost:3000/app/assets/javascript/api.js"></script>
+
+    <a href="#" id="post">post</a>
+    <table border="1">
+        <tbody>
+            <tr>
+                <th>code</th>
+                <td id="code"> </td>
+            </tr>
+            <tr>
+                <th>message</th>
+                <td id="message"> </td>
+            </tr>
+        </tbody>
+    </table>
+    <script src="//code.jquery.com/jquery-3.1.1.js"></script>
     <script>
     $(function(){
-        $('#post').on('click', function(){
-            $.ajax({
-                method: 'post',
-                url: 'login',
-                dataType: "json",
-                contentType: "application/json",
-                data: JSON.stringify({
-                    user:
-                    {
-                        username: "Yehuda",
-                        password: "test"
-                    }
-                }),
-                timeout: 10000,
-                }).done(function(data) {
-                    alert("success:" + data);
-                    alert("success:" + data[0]);
-
-                    // 取れてた
-                    console.log('ログ', data);
-                    console.log('ログ', data.error);
-                    console.log('ログ', data.error.code);
-                    console.log('ログ', data.error.message);
-                    // レスポンスデータを画面に表示してみた
-                    $("#code").text(data.error.code);
-                    $("#message").text(data.error.message);
-
-                }).fail(function(data) {
-                    alert("error");
-            })
-        })
+      $.ajax({
+        method: 'post',
+        url: 'http://localhost:3000/api/v1/pvs',
+        dataType: "json",
+        contentType: "application/json",
+        data: JSON.stringify({
+            pv: { url: location.href, }
+        }),
+        timeout: 10000,
+      })
     })
     </script>
   </body>
