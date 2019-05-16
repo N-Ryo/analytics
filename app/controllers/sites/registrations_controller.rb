@@ -21,9 +21,10 @@ class Sites::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    site_params.url = URI.parse(site_params.url).host
+    super
+  end
 
   # DELETE /resource
   # def destroy

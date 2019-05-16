@@ -25,34 +25,5 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
-
-    <a href="#" id="post">post</a>
-    <table border="1">
-        <tbody>
-            <tr>
-                <th>code</th>
-                <td id="code"> </td>
-            </tr>
-            <tr>
-                <th>message</th>
-                <td id="message"> </td>
-            </tr>
-        </tbody>
-    </table>
-    <script src="//code.jquery.com/jquery-3.1.1.js"></script>
-    <script>
-    $(function(){
-      $.ajax({
-        method: 'post',
-        url: 'http://localhost:3000/api/v1/pvs',
-        dataType: "json",
-        contentType: "application/json",
-        data: JSON.stringify({
-            pv: { url: location.href, }
-        }),
-        timeout: 10000,
-      })
-    })
-    </script>
   </body>
 </html>
