@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_13_235818) do
+ActiveRecord::Schema.define(version: 2019_05_14_074757) do
+
+  create_table "pvs", force: :cascade do |t|
+    t.string "url"
+    t.integer "site_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["site_id"], name: "index_pvs_on_site_id"
+  end
 
   create_table "sites", force: :cascade do |t|
     t.string "username", default: "", null: false
