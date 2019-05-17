@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Site.create!(
+  username: "ryo",
+  email: "test@example.com",
+  url: "https://pv-analytics.herokuapp.com/",
+  sname: "analytics",
+  password: "testtest",
+  password_confirmation: "testtest"
+)
