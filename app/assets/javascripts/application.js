@@ -14,4 +14,5 @@
 //= require activestorage
 //= require jquery
 //= require turbolinks
+//= stub api
 //= require_tree .
