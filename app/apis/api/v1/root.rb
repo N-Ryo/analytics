@@ -1,6 +1,7 @@
 module API
   module V1
     class Root < Grape::API
+      protect_from_forgery with: :null_session
       version 'v1', using: :path
       format :json
       post '/pvs' do
