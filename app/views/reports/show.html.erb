@@ -1,3 +1,27 @@
 <h1>こんにちは、<%= current_site.username %>さん</h1>
 <p>ユーザー用ページです。</p>
 <p><%= current_site.sname %>は合計<%= @pvs.count %>回閲覧されています。</p>
+
+<table border="1" width="500" cellspacing="0" cellpadding="5" bordercolor="#333333">
+  <tr>
+    <th bgcolor="#EE0000"><font color="#FFFFFF"><%= link_to "URL", sort: "url", direction: @direction %></font></th>
+    <th bgcolor="#EE0000" width="150">
+      <font color="#FFFFFF">
+        <%= link_to "アクセス日時", sort: "created_at", direction: @direction %>
+        <%= " " %>
+        <%= link_to "期間指定", sort: "created_at", direction: @direction %>
+        <%= form_with url: reports_show_path, method: :get do |f| %>
+          <p>始点<%= f.date_field :start_date, value: Time.zone.now.strftime("%Y-%m-%d") %></p>
+          <p>終点<%= f.date_field :end_date, value: Time.zone.now.strftime("%Y-%m-%d") %></p>
+          <%= f.submit %>
+        <% end %>
+      </font>
+    </th>
+  </tr>
+  <% @pvs.each do |pv| %>
+    <tr>
+      <td bgcolor="#99CC00" align="center" nowrap><%= pv.url %></td>
+      <td bgcolor="#FFFFFF" valign="top" width="150"><%= pv.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
+    </tr>
+  <% end %>
+</table>
