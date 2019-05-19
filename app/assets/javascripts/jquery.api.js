@@ -2,7 +2,7 @@ $(function(){
   $.ajax({
     method: 'post',
     url: 'https://pv-analytics.herokuapp.com/api/v1/pvs',
-    dataType: "json",
+    dataType: "jsonp",
     contentType: "application/json",
     data: JSON.stringify({
         pv: { url: location.href, }
