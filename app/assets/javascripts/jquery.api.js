@@ -1,7 +1,7 @@
 $(function(){
   $.ajax({
     method: 'post',
-    url: 'https://pv-analytics.herokuapp.com/api/v1/pvs',
+    url: 'http://localhost:3000/api/v1/pvs',
     dataType: "json",
     contentType: "application/json",
     data: JSON.stringify({

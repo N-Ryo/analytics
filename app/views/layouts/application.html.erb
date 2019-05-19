@@ -5,6 +5,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <script src="//code.jquery.com/jquery-3.1.1.js"></script>
+    <script src="https://pv-analytics.herokuapp.com/assets/application-daaa69fff6c998956abfb381c1b7def456c8a8bb2638da1bf76a7fae138dfb39.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -25,7 +27,5 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
-    <script src="//code.jquery.com/jquery-3.1.1.js"></script>
-    <script src="https://pv-analytics.herokuapp.com/app/apis/api.js"></script>
   </body>
 </html>

@@ -28,7 +28,8 @@
 
   <div class="field">
     <%= f.label :url %><br />
-    <%= f.url_field :url, autocomplete: "url" %>
+    <input type="url" autocomplete= "url", id= "url-raw" >
+    <%= f.hidden_field :url, id: "url-host" %>
   </div>
 
   <div class="field">

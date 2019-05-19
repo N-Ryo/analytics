@@ -11,7 +11,6 @@ class Sites::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    site_params.url = URI.parse(site_params.url).host
     super
   end
 

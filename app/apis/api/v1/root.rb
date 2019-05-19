@@ -4,10 +4,9 @@ module API
       version 'v1', using: :path
       format :json
       post '/pvs' do
-        puts params
-        puts pv_params = params.fetch(:pv, {})
+        pv_params = params.fetch(:pv, {})
         @pv = Pv.new
-        puts @pv.url = pv_params[:url]
+        @pv.url = pv_params[:url]
         @site = Site.find_by(url: URI.parse(@pv[:url]).host)
         @pv[:site_id] = @site.id
         @pv.save

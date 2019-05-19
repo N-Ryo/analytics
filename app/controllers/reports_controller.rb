@@ -3,6 +3,7 @@ class ReportsController < ApplicationController
   end
 
   def show
-    @pvs = Pv.all
+    @site = current_site
+    @pvs = @site.pvs
   end
 end
