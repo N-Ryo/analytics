@@ -12,15 +12,19 @@
   <body>
     <header>
         <nav>
-          <%= link_to 'Toppage', root_path %>
-          <% if site_signed_in? %>
-            <strong><%= link_to current_site.username, reports_show_path %></strong>
-            <%= link_to 'セッティング', edit_site_registration_path %>
-            <%= link_to 'ログアウト', sites_sign_out_path %>
-          <% else %>
-            <%= link_to 'サインアップ', new_site_registration_path %>
-            <%= link_to 'ログイン', new_site_session_path %>
-          <% end %>
+          <div class="top">
+            <h1><%= link_to 'Toppage', root_path %></h1>
+          </div>
+          <div class="menu">
+            <% if site_signed_in? %>
+              <strong><%= link_to 'マイページ', reports_show_path %></strong>
+              <%= link_to '登録情報変更', edit_site_registration_path %>
+              <%= link_to 'ログアウト', sites_sign_out_path %>
+            <% else %>
+              <%= link_to '新規サイト登録', new_site_registration_path %>
+              <%= link_to 'ログイン', new_site_session_path %>
+            <% end %>
+          </div>
         </nav>
     </header>
     <p class="notice"><%= notice %></p>
