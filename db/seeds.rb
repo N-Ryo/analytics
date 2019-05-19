@@ -9,7 +9,7 @@
 Site.create!(
   username: "ryo",
   email: "test@example.com",
-  url: "https://pv-analytics.herokuapp.com/",
+  url: "pv-analytics.herokuapp.com",
   sname: "analytics",
   password: "testtest",
   password_confirmation: "testtest"
