@@ -3,29 +3,53 @@
 <p><%= current_site.sname %>は<%= @text %>合計<%= @pvs.count %>回閲覧されています。</p>
 
 <table border="1" width="500" cellspacing="0" cellpadding="5" bordercolor="#333333">
-  <tr>
-    <th bgcolor="#EE0000"><font color="#FFFFFF">
-      <%= link_to "URL", sort: "url", direction: @direction,
-          start_date: @sort_start, end_date: @sort_end %>
-    </font></th>
-    <th bgcolor="#EE0000" width="150">
-      <font color="#FFFFFF">
-        <%= link_to "アクセス日時", sort: "created_at", direction: @direction,
+  <thead>
+      <th bgcolor="skyblue"><font color="#FFFFFF">
+        <%= link_to "URL", sort: "url", direction: @direction,
             start_date: @sort_start, end_date: @sort_end %>
-        <%= " " %>
-        <%= link_to "期間指定", sort: "created_at", direction: @direction %>
-        <%= form_with url: reports_show_path, method: :get do |f| %>
-          <p>始点<%= f.date_field :start_date, value: @start %></p>
-          <p>終点<%= f.date_field :end_date, value: @end %></p>
-          <%= f.submit %>
-        <% end %>
-      </font>
-    </th>
-  </tr>
-  <% @pvs.each do |pv| %>
-    <tr>
-      <td bgcolor="#99CC00" align="center" nowrap><%= pv.url %></td>
-      <td bgcolor="#FFFFFF" valign="top" width="150"><%= pv.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
-    </tr>
-  <% end %>
+      </font></th>
+      <th bgcolor="skyblue" width="150">
+        <font color="#FFFFFF">
+          <%= link_to "アクセス日時", sort: "created_at", direction: @direction,
+              start_date: @sort_start, end_date: @sort_end %>
+          <%= " " %>
+          <%= link_to "", sort: "created_at", direction: @direction %>
+          <button type="button" class="btn-to-text" data-toggle="modal" data-target="#exampleModalScrollable">
+           期間指定
+          </button>
+        </font>
+      </th>
+    </thead>
+  <tbody>
+    <% @pvs.each do |pv| %>
+      <tr>
+        <td bgcolor="#F0F0FF" align="center" nowrap><%= pv.url %></td>
+        <td bgcolor="#FFFFFF" valign="top" width="150"><%= pv.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
+
+<!-- モーダルの設定 -->
+<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalScrollableTitle">期間指定</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= form_with url: reports_show_path, method: :get do |f| %>
+        <div class="modal-body">
+            <p>始点<%= f.date_field :start_date, value: @start %></p>
+            <p>終点<%= f.date_field :end_date, value: @end %></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+          <%= f.submit class: "btn btn-primary"%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+@import "bootstrap";@import "bootstrap";
+
+body {
+  margin: 0;
+  width: 100%;
+}
+
+header {
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+}
+header a {
+  color: inherit;
+  text-decoration: none;
+}
+header a:hover {
+  text-decoration: none;
+  color: inherit;
+  background-color: inherit;
+}
+
+.top, .menu {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.top {
+  width: 150px;
+  margin-right: 10px;
+}
+
+.top h1 {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.menu {
+  max-width: calc(100% - 200px);
+  font-weight: 500;
+}
+
+.menu a {
+  padding-right: 5px;
+}
+
+.notice, .alert {
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 0;
+}
+
+.notice {
+  color: #ddd;
+}
+
+.alert {
+  color: rgba(255, 0, 0, 0.5);
+}
+
+.row {
+  padding: 10px;
+}
+
+table {
+  width: 100%;
+  display: table;
+  text-align: center;
+}
+
+.btn-to-text {
+  border: none;
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
