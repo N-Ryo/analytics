@@ -1,6 +1,7 @@
 module API
   module V1
     class Root < Grape::API
+      skip_before_action :verify_authenticity_token
       version 'v1', using: :path
       format :json
       post '/pvs' do
