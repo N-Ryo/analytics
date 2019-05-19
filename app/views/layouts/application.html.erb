@@ -16,7 +16,7 @@
           <% if site_signed_in? %>
             <strong><%= link_to current_site.username, reports_show_path %></strong>
             <%= link_to 'セッティング', edit_site_registration_path %>
-            <%= link_to 'ログアウト', destroy_site_session_path, method: :delete %>
+            <%= link_to 'ログアウト', sites_sign_out_path %>
           <% else %>
             <%= link_to 'サインアップ', new_site_registration_path %>
             <%= link_to 'ログイン', new_site_session_path %>
