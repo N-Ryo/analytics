@@ -12,6 +12,7 @@
   <body>
     <header>
         <nav>
+          <%= link_to 'Toppage', root_path %>
           <% if site_signed_in? %>
             <strong><%= link_to current_site.username, reports_show_path %></strong>
             <%= link_to 'セッティング', edit_site_registration_path %>
