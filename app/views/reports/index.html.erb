@@ -4,7 +4,8 @@
 <% if site_signed_in? %>
   # ajaxによりcurrent_site.idを利用したランダムでユニークな値を埋め込んだ
   # javascriptタグを発行する
-  <button type="button" name="button">計測タグを発行する</button>
-  <p>発行された計測タグをご利用のhtmlファイルのbodyタグ内に貼り付けてください。</p>
-  <p>bodyタグの最下部が推奨される貼り付け位置です。</p>
+  <button type="button" name="button" id="measurement-btn">計測タグを発行する</button>
+  <p>発行された計測タグをご利用のhtmlファイルのheadタグ内に貼り付けてください。</p>
+  <textarea id="measurement-text" cols="100" rows="4" readonly=true placeholder="ここに計測タグが表示されます。"></textarea>
+  <p id="measurement-notice"></p>
 <% end %>

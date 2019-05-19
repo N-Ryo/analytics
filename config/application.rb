@@ -17,7 +17,8 @@ module Analytics
     # the framework and any gems in your application.
     config.paths.add File.join('app', 'apis'), glob: File.join('**', '*.rb')
     config.autoload_paths += Dir[Rails.root.join('app', 'apis', '*')]
-
+    config.time_zone = 'Tokyo'
+    config.active_record.default_timezone = :local
 
     config.x.cors_allowed_origins = ENV.fetch('CORS_ALLOWED_ORIGINS', 'https://move-hack.herokuapp.com')
 
