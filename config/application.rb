@@ -21,10 +21,5 @@ module Analytics
 
     config.x.cors_allowed_origins = ENV.fetch('CORS_ALLOWED_ORIGINS', 'https://move-hack.herokuapp.com')
 
-    config.action_dispatch.default_headers = {
-      'Access-Control-Allow-Credentials' => 'true',
-      'Access-Control-Allow-Origin' => '*',
-      'Access-Control-Request-Method' => '*'
-    }
   end
 end
