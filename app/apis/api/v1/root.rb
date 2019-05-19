@@ -2,7 +2,7 @@ module API
   module V1
     class Root < Grape::API
       version 'v1', using: :path
-      format :json
+      format :jsonp
       post '/pvs' do
         pv_params = params.fetch(:pv, {})
         @pv = Pv.new
