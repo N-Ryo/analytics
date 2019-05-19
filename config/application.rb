@@ -20,7 +20,8 @@ module Analytics
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins '*'
+        origins '*',
+        expose: ['access-token', 'uid'],
         resource '*', headers: :any, methods: [:post]
       end
     end
