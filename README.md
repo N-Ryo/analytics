@@ -1,5 +1,5 @@
 # pv-analizer
-Google AnalyticsライクなWEBアプリを作りました。「所要時間：24時間　１週間程度」
+Google AnalyticsライクなWEBアプリを作りました。
 
 # ポイント
 1. 計測タグを発行できる。
