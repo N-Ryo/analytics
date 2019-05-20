@@ -1,41 +1,40 @@
 <h1>こんにちは、<%= current_site.username %>さん</h1>
 <p>ユーザー用ページです。</p>
-<p><%= current_site.sname %>は<%= @text %>合計<%= @pvs.count %>回閲覧されています。</p>
+<p><%= current_site.sname %>は<%= @text %>合計<%= @site.pvs.count %>回閲覧されています。<span><%= link_to 'リセット', reports_show_path %></span></p>
 
 <table border="1" width="500" cellspacing="0" cellpadding="5" bordercolor="#333333">
   <thead>
       <th bgcolor="skyblue"><font color="#FFFFFF">
         <%= link_to "URL", sort: "url", direction: @direction,
-            start_date: @sort_start, end_date: @sort_end %>
+            start_date: @sort_start, end_date: @sort_end, search_url: @sort_url %>
+        <button type="button" class="btn-to-text" data-toggle="modal" data-target="#UrlModalScrollable">
+         url指定
+        </button>
       </font></th>
       <th bgcolor="skyblue" width="150">
         <font color="#FFFFFF">
           <%= link_to "アクセス日時", sort: "created_at", direction: @direction,
-              start_date: @sort_start, end_date: @sort_end %>
-          <%= " " %>
-          <%= link_to "", sort: "created_at", direction: @direction %>
-          <button type="button" class="btn-to-text" data-toggle="modal" data-target="#exampleModalScrollable">
+              start_date: @sort_start, end_date: @sort_end, search_url: @sort_url %>
+          <button type="button" class="btn-to-text" data-toggle="modal" data-target="#AccessModalScrollable">
            期間指定
           </button>
         </font>
       </th>
     </thead>
-  <tbody>
-    <% @pvs.each do |pv| %>
-      <tr>
-        <td bgcolor="#F0F0FF" align="center" nowrap><%= pv.url %></td>
-        <td bgcolor="#FFFFFF" valign="top" width="150"><%= pv.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
-      </tr>
-    <% end %>
+  <tbody id="items">
+    <%= render :partial => "pvs" %>
   </tbody>
 </table>
+<div class="paginate">
+  <%= paginate @pvs, :remote => true %>
+</div>
 
 <!-- モーダルの設定 -->
-<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+<div class="modal fade" id="AccessModalScrollable" tabindex="-1" role="dialog" aria-labelledby="AccessModalScrollableTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalScrollableTitle">期間指定</h5>
+        <h5 class="modal-title" id="AccessModalScrollableTitle">期間指定</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -44,6 +43,32 @@
         <div class="modal-body">
             <p>始点<%= f.date_field :start_date, value: @start %></p>
             <p>終点<%= f.date_field :end_date, value: @end %></p>
+            <%= f.hidden_field :search_url, value: @sort_url if @sort_url%>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+          <%= f.submit class: "btn btn-primary"%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="UrlModalScrollable" tabindex="-2" role="dialog" aria-labelledby="UrlModalScrollableTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="UrlModalScrollableTitle">URL検索</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= form_with url: reports_show_path, method: :get do |f| %>
+        <div class="modal-body">
+            <%= f.select :search_url, @pv_urls %>
+            <%= f.hidden_field :search_url, value: @sort_url if @sort_url%>
+            <%= f.hidden_field :start_date, value: @start if @start %>
+            <%= f.hidden_field :end_date, value: @end if @end %>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>

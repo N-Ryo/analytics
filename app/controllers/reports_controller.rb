@@ -8,6 +8,8 @@ class ReportsController < ApplicationController
   def show
     @site = current_site
     @pvs = @site.pvs
+
+    # 期間ソート準備
     @sort_start = params[:start_date] ? params[:start_date] : ''
     @sort_end = params[:end_date] ? params[:end_date] : ''
 
@@ -29,15 +31,29 @@ class ReportsController < ApplicationController
       end
     end
 
+    # URLソート準備
+    @sort_url = params[:search_url] ? params[:search_url] : ''
+    @pv_urls = @pvs.group(:url).pluck(:url)
+
+    # URLで検索
+    if !params[:search_url].blank?
+      @pvs = @pvs.where(url: @sort_url) unless @sort_url.blank?
+    end
+
     # デフォルトはアクセス日時・降順
     sort = VALID_SORT_COLUMNS.include?(params[:sort]) ? params[:sort] : 'created_at'
     @direction = SORT_COLUMNS.include?(params[:direction]) ? params[:direction] : 'DESC'
 
     # ソート対象とソート方法の指定
-    @pvs = @pvs.order(sort + ' ' + @direction)
+    @pvs = @pvs.order(sort + ' ' + @direction).page(params[:page]).per(10)
 
     # ビューの昇順・降順の入れ替え
     @direction = @direction == 'ASC' ? 'DESC' : 'ASC'
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
 end

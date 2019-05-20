@@ -80,3 +80,11 @@ table {
     text-decoration: underline;
   }
 }
+
+.paginate {
+  text-align: center;
+  padding: 5px 10px;
+  nav {
+    display: inline-block;
+  }
+}

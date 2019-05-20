@@ -1,0 +1,6 @@
+<% @pvs.each do |pv| %>
+  <tr>
+    <td bgcolor="#F0F0FF" align="center" nowrap><%= pv.url %></td>
+    <td bgcolor="#FFFFFF" valign="top" width="150"><%= pv.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
+  </tr>
+<% end %>
