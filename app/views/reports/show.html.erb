@@ -4,14 +4,14 @@
 
 <table border="1" width="500" cellspacing="0" cellpadding="5" bordercolor="#333333">
   <thead>
-      <th bgcolor="skyblue"><font color="#FFFFFF">
+      <th bgcolor="skyblue" width="75%"><font color="#FFFFFF">
         <%= link_to "URL", sort: "url", direction: @direction,
             start_date: @sort_start, end_date: @sort_end, search_url: @sort_url %>
         <button type="button" class="btn-to-text" data-toggle="modal" data-target="#UrlModalScrollable">
          url指定
         </button>
       </font></th>
-      <th bgcolor="skyblue" width="150">
+      <th bgcolor="skyblue" width="25%">
         <font color="#FFFFFF">
           <%= link_to "アクセス日時", sort: "created_at", direction: @direction,
               start_date: @sort_start, end_date: @sort_end, search_url: @sort_url %>

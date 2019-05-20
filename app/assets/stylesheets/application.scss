@@ -82,10 +82,15 @@ header a:hover {
   margin: 0;
 }
 
+.col-md-10 {
+  padding: 0;
+}
+
 table {
   width: 100%;
   display: table;
   text-align: center;
+
 }
 
 .btn-to-text {
@@ -107,6 +112,6 @@ table {
   }
 }
 
-select {
+select, textarea {
   width: 100%;
 }
