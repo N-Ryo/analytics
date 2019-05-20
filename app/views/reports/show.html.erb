@@ -1,6 +1,6 @@
 <h1>こんにちは、<%= current_site.username %>さん</h1>
 <p>ユーザー用ページです。</p>
-<p><%= current_site.sname %>は<%= @text %>合計<%= @site.pvs.count %>回閲覧されています。<span><%= link_to 'リセット', reports_show_path %></span></p>
+<p><%= current_site.sname %>は<%= @text %>合計<%= @site.pvs.count %>回閲覧されています。<span><%= link_to 'フィルターリセット', reports_show_path %></span></p>
 
 <table border="1" width="500" cellspacing="0" cellpadding="5" bordercolor="#333333">
   <thead>
